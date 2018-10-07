@@ -1,7 +1,7 @@
 # Aesthetic Analysis of Rule Breaks in High Quality Photographs
 Veteran photographers will often purposefully break common photographic rules in their photographs. They often do so based on feel, having an intuitive sense of what particular aspects of their photograph allow them to break certain rules. In this project, we use a rigorous machine learning and image processing based approach on a large dataset of high quality photographs, in order to illuminate actual patterns of conditions under which certain rules can be broken. 
 
-**Dataset.** We use the AVA dataset, originally used for aesthetics classification (classifying high-quality vs. low-quality images). The dataset consists of a descriptor file of 255,530 photographs from photography contest website DBChallenge.com. The descriptor file contains the image ID of each photograph and the distribution of ratings from a scale of 1-10. The photographs are not part of the dataset, so we needed to scrape all of them based on their image ID. We primarily examine the top 5% highest rated images in the dataset, and consider them high quality photographs.   
+**Dataset.** We use the AVA dataset, originally used for aesthetics classification (classifying high-quality vs. low-quality images). The dataset consists of a descriptor file of 255,530 photographs from photography contest website DBChallenge.com. The descriptor file contains the image ID of each photograph and the distribution of ratings from a scale of 1-10. The photographs are not part of the dataset, so we needed to scrape all of them based on their image ID. We primarily examine the top 5% highest rated images in the dataset, and consider them high-quality photographs. As a contrast, we also look at the bottom 5% rated images in the dataset and consider them low-quality photographs.   
 
 **Note about this repository.** Due to space considerations on GitHub, we only include three sample images from each of the high-quality and low-quality set.  
 
@@ -25,3 +25,15 @@ break particular rules, we use our features and classification in combination wi
 11. *featureanalysis.R*. Analyzes the features using standard data analysis techniques.
 12. *util2.R*. Utility functions for the R scripts. 
 13. *high.txt and low.txt*. The features data for the high-quality and low-quality sets, respectively. 
+
+**Description of folders.**
+
+1. *Features Data.* Contains the outputs of createfeatures.py - A numbered text file for each photograph containing the features vectors. The nbhd subfolders contain text files for each photograph listing its K nearest neighbors as well as whether it is a high quality photograph (1 = high quality, 0 = low quality).
+
+2. *Histograms.* Contains the color histogram for each photograph (as .txt). 
+
+3. *Outlines.* Contains subject detection outlines (as .jpg) for each photograph. 
+
+4. *Photographs.* Contains the actual photographs themselves (as .jpg). 
+
+5. *Property Text Lists.* Contains list of images for each binary property.
