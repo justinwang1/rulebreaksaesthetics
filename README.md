@@ -3,18 +3,18 @@ Veteran photographers will often purposefully break common photographic rules in
 
 ## Dataset 
 
-We use the AVA dataset, originally used for aesthetics classification (classifying high-quality vs. low-quality images). The dataset consists of a descriptor file of 255,530 photographs from photography contest website DBChallenge.com. The descriptor file contains the image ID of each photograph and the distribution of ratings from a scale of 1-10. The photographs are not part of the dataset, so we needed to scrape all of them based on their image ID. We primarily examine the top 5% highest rated images in the dataset, and consider them high-quality photographs. As a contrast, we also look at the bottom 5% rated images in the dataset and consider them low-quality photographs.   
+We used the AVA dataset, originally used for aesthetics classification (classifying high-quality vs. low-quality images). The dataset consists of a descriptor file of 255,530 photographs from photography contest website DBChallenge.com. The descriptor file contains the image ID of each photograph and the distribution of ratings from a scale of 1-10. The actual photographs themselves are not part of the dataset, so we needed to scrape them directly from DBChallenge.com. We primarily examined the top 5% highest rated images in the dataset and considered them high-quality photographs. As a contrast, we also looked at the bottom 5% rated images in the dataset and considered them low-quality photographs.   
 
-**Note about this repository.** Due to space considerations on GitHub, we only include three sample images from each of the high-quality and low-quality set.  
+**Note about this repository.** Due to space considerations on GitHub, we only included three sample images from each of the high-quality and low-quality set.  
 
 ## Approach 
 
-We first devised a set of 13 high-level features that described certain attributes of a photograph. Examples of features include: percentage of area taken by the subject, lighting contrast, aspect ratio, and blur. We then ran a classification model of high-quality vs. low-quality photographs, in order to establish which features are strongly associated with high-quality images. High-quality photographs that break the rules are more likely to be misclassified. This principle forms the backbone of identifying rule breaking high-quality photographs. 
+We first devised a set of high-level features that described certain attributes of a photograph. Examples of features include: percentage of area taken by the subject, lighting contrast, aspect ratio, and blur. We then ran a classification model of high-quality vs. low-quality photographs, in order to establish which features are strongly associated with high-quality images. High-quality photographs that broke the rules were more likely to be misclassified. This principle formed the backbone of identifying rule breaks high-quality photographs. 
 
-We also used the features directly to identify particular rule breaks computationally. For example, we used the rule of thirds feature to measure if the subject is being placed at the center of a photograph (you are generally taught to avoid this in photography). In addition, we computationally detect and describe several binary properties (e.g. whether an animal is in the photograph, whether the photograph is a silhouette, etc.) to subdivide the images as to more accurately describe them. After isolating photographs that 
+We also used the features directly to identify particular rule breaks computationally. For example, we used the rule of thirds feature to measure if the subject is being placed at the center of a photograph (you are generally taught to avoid this in photography). In addition, we computationally detected and described several binary properties (e.g. whether an animal is in the photograph, whether the photograph is a silhouette, etc.) to subdivide the images as to more accurately describe them. After isolating photographs that 
 break particular rules, we use our features and classification in combination with consultation with a photography professional to ascertain what patterns exist among photographs breaking a particular rule. 
 
-## Description of files.
+## Description of files
 
 1. *createfeatures.py*. Primary file for creating all of the features. All but three of the features are included in the file. The other three, described next, were quite involved and separated into their own file. 
 2. *nncolorfeature.py*. A feature that determines the percentage of nearest neighbors color-wise of a photograph that belong to the high-quality set. 
@@ -30,7 +30,7 @@ break particular rules, we use our features and classification in combination wi
 12. *util2.R*. Utility functions for the R scripts. 
 13. *high.txt and low.txt*. The features data for the high-quality and low-quality sets, respectively. 
 
-## Description of folders.
+## Description of folders
 
 1. *Features Data.* Contains the outputs of createfeatures.py - A numbered text file for each photograph containing the features vectors. The nbhd subfolders contain text files for each photograph listing its K nearest neighbors as well as whether it is a high quality photograph (1 = high quality, 0 = low quality).
 
